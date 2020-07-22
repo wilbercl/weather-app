@@ -1,15 +1,10 @@
 import React, {Component} from "react";
 import Location from './Location';
-import convert from 'convert-units';
 import WeatherData from './WeatherData';
 import './styles.css';
 import {SUN} from './../../constants/weathers.js';
-
-const location ="Santa Cruz de Tenerife,es";
-const api_key ="600a3920bd1bc261a9e892c7546be440";
-const url_base_weather = "http://api.openweathermap.org/data/2.5/weather";
-
-const api_weather = `${url_base_weather}?q=${location}&appid=${api_key}`;
+import transformWeather from './../../services/transformWeather.js';
+import {api_weather} from '../../constants/api_url.js';
 
 const data ={
     temperature : 5,
@@ -36,30 +31,6 @@ class WeatherLocation extends Component{
         };
     };
 
-    getTemp = kelvin =>{
-        return Number(convert(kelvin).from("K").to("C").toFixed(2));
-    }
-
-    getWeatherState = weather_data =>{
-        return SUN;
-    };
-
-    getData = weather_data => {
-        const {humidity, temp} = weather_data.main;
-        const {speed} = weather_data.wind;
-        // const {main} = weather_data.weather[0];
-        const weatherState = this.getWeatherState(weather_data.weather[0]);
-
-        const data = {
-            humidity,
-            temperature:this.getTemp(temp),
-            wind:`${speed} m/s`,
-            weatherState,
-        }
-
-        return data;
-    };
-
     handleUpdateClick = () => {
         fetch(api_weather).then(resolve => {
             return resolve.json();
@@ -68,7 +39,7 @@ class WeatherLocation extends Component{
             console.log(data);
 
             this.setState({
-            data : this.getData(data),
+            data : transformWeather(data),
             });    
             debugger;
         });
