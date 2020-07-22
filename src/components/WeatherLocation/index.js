@@ -4,8 +4,9 @@ import WeatherData from './WeatherData';
 import './styles.css';
 // import {SUN} from './../../constants/weathers.js';
 import transformWeather from './../../services/transformWeather.js';
-import {api_weather} from '../../constants/api_url.js';
+import getUrlWeatherByCity from './../../services/getUrlWeatherByCity.js';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import PropTypes from 'prop-types';
 
 // const data ={
 //     temperature : 5,
@@ -24,10 +25,12 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 // const WeatherLocation = ()=>(
 class WeatherLocation extends Component{
 
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
+        const {city} = props;
+        console.log(city);
         this.state = {
-            city : "Tenerife",
+            city,
             data : null,
         };
         console.log("constructor");
@@ -43,7 +46,8 @@ class WeatherLocation extends Component{
     }
 
     handleUpdateClick = () => {
-        fetch(api_weather).then(resolve => {
+        
+        fetch(getUrlWeatherByCity(this.state.city)).then(resolve => {
             return resolve.json();
         }).then(data =>{
 
@@ -55,7 +59,6 @@ class WeatherLocation extends Component{
             debugger;
         });
 };
-
     render(){
         console.log("render");
         const {city, data} = this.state;
@@ -65,5 +68,9 @@ class WeatherLocation extends Component{
                     {/* <button onClick={this.handleUpdateClick}>Update</button> */}
                 </div>)}
 };
+
+WeatherLocation.propTypes={
+    city: PropTypes.string.isRequired,
+}
 
 export default WeatherLocation;
