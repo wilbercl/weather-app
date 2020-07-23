@@ -28,7 +28,8 @@ class App extends Component{
   render(){
     return (
       <div className="App">
-        <LocationList></LocationList>
+        <LocationList cities={["Adeje,es", "La Habana,cu", "Artemisa,cu", "Washington,usa", "Lima,pe", "Brasilia,br"]}>
+        </LocationList>
       </div>
     )
   }
