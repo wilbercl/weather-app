@@ -56,7 +56,7 @@ class WeatherLocation extends Component{
             this.setState({
             data : transformWeather(data),
             });    
-            debugger;
+            
         });
 };
     render(){
