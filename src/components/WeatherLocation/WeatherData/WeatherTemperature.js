@@ -17,7 +17,7 @@ const icons = {
     [DRIZZLE]:"day-showers",
     [RAIN]:"rain",
     [SNOW]:"snow",
-    [THUNDER]:"day-thunderstore"
+    [THUNDER]:"day-thunderstorm"
 };
 
 const sizeIcon = "4x";
