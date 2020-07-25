@@ -13,7 +13,7 @@ overflow: hidden;
 }
 
 .weatherLocationCont{
-width: calc(100%-20px);
+width: calc(400%-20px);
 margin-left: 10px;
 margin-right: 10px;
 min-width: 350px;

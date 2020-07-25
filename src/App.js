@@ -75,8 +75,8 @@ class App extends Component{
           <Row>
             <Col xs={12} md={6}>
               <LocationList 
-                cities={["Adeje,es", "La Habana,cu", "Artemisa,cu", "Washington,usa", "Lima,pe", "Brasilia,br"]} 
-                onSelectedLocation={this.handleSelectedLocation}>
+                cities={["Adeje,es", "La Habana,cu", "Artemisa,cu", "Washington,usa", "Lima,pe", "Brasilia,br"]} >
+                 {/* onSelectedLocation={this.handleSelectedLocation}> */}
               </LocationList>
             </Col>
             <Col xs={12} md={6}>
