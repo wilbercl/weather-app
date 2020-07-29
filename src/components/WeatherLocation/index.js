@@ -52,7 +52,7 @@ class WeatherLocation extends Component{
 };
 
 WeatherLocation.propTypes={
-    city: PropTypes.string.isRequired,
+    city: PropTypes.string,
     onWeatherLocationClick: PropTypes.func,
 }
 

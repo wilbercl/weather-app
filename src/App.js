@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import Paper from '@material-ui/core/Paper';
 import AppBar from '@material-ui/core/AppBar';
-import Typography from '@material-ui/core/Typography';
-import Toolbar from '@material-ui/core/Toolbar';
+// import Typography from '@material-ui/core/Typography';
+// import Toolbar from '@material-ui/core/Toolbar';
 import LocationList from './components/LocationList';
+import ForecastExtended from './components/ForecastExtended';
+
 // import logo from './logo.svg';
 import './App.css';
 // import { Grid } from '@material-ui/core';
@@ -33,7 +35,14 @@ import { Grid, Row, Col } from 'react-flexbox-grid';
 
 class App extends Component{
 
+  constructor () {
+    super();
+
+    this.state={city:null};
+  }
+
   handleSelectedLocation = city =>{
+    this.setState({city});
     console.log(`handleSelectedLocation ${city}`);
   }
 
@@ -64,24 +73,34 @@ class App extends Component{
 
         <Grid>
           <Row>
-            <AppBar position="sticky">
-              <Toolbar>
-                <Typography variant="title" color='inherit'>
+            <Col xs={12}>
+              <AppBar position="sticky">
+                {/* <Toolbar>
+                  <Typography variant="title" color='inherit'> */}
                   Weather App
-                </Typography>
-              </Toolbar>
-            </AppBar> 
+                  {/* </Typography>
+                </Toolbar> */}
+              </AppBar> 
+            </Col>
+            
           </Row>
           <Row>
             <Col xs={12} md={6}>
               <LocationList 
-                cities={["Adeje,es", "La Habana,cu", "Artemisa,cu", "Washington,usa", "Lima,pe", "Brasilia,br"]} >
-                 {/* onSelectedLocation={this.handleSelectedLocation}> */}
+                cities={["Adeje,es", "La Habana,cu", "Artemisa,cu", "Washington,usa", "Lima,pe", "Brasilia,br"]} 
+                onSelectedLocation={this.handleSelectedLocation}
+              >
               </LocationList>
             </Col>
             <Col xs={12} md={6}>
               <Paper elevation={4}>
-                <div className="details"></div>
+                <div className="details">
+                  {
+                    this.state.city &&  
+                      // <h1>No se selecciono ciudad</h1> :
+                      <ForecastExtended city={this.state.city}></ForecastExtended>
+                  }
+                </div>
               </Paper>
             </Col>
           </Row>        
